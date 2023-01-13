@@ -1,9 +1,9 @@
 .Header {
     display: flex;
     justify-content: flex-end;
-    background-color: blue;
+    background-color: #000000;
     align-items: center;
     color: snow;
     font-size: 25px;
-    height: 80px;
+    height: 100px;
 }
