@@ -3,24 +3,24 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../redux";
 
-import {UserServices} from "../../services";
 import {User} from "../User/User";
-
 
 const Users = () => {
 
     const dispatch = useDispatch();
-    const {users} = useSelector(state => state.userReducer);
+    const {users, error, loading} = useSelector(state => state.userReducer);
 
     useEffect(() => {
-        UserServices.getAll().then(({data}) => dispatch(userActions.getAll(data)))
+        dispatch(userActions.getAll())
     }, [])
 
     return (
 
         <div>
+            {loading && <div>Loading.................</div>}
+            {error && JSON.stringify(error)}
             {
-                users.map(user => <User key={user.id} user={user} />)
+                users.map(user => <User key={user.id} user={user}/>)
             }
         </div>
 
