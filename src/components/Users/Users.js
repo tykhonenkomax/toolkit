@@ -8,8 +8,7 @@ import {User} from "../User/User";
 const Users = () => {
 
     const dispatch = useDispatch();
-    const {users, error, loading} = useSelector(state => state.userReducer);
-
+    const {users, error, loading, userFromAPI} = useSelector(state => state.userReducer);
     useEffect(() => {
         dispatch(userActions.getAll())
     }, [])
@@ -19,6 +18,7 @@ const Users = () => {
         <div>
             {loading && <div>Loading.................</div>}
             {error && JSON.stringify(error)}
+            {userFromAPI && userFromAPI.email}
             {
                 users.map(user => <User key={user.id} user={user}/>)
             }
